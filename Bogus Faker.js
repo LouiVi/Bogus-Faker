@@ -98,7 +98,7 @@ function createRandomUser(){
 	//Add layout to app.	
 	app.AddLayout( lay )
 	//app.Wait(10, false);
-	for(i=0;i<15000;i++){
+	for(i=0;i<10000;i++){
 	const userData = createRandomUser();
 	//app.WriteFile( "/storage/emulated/0/JSON/user_"+(i+1)+".json", JSON.stringify(userData) )
 	records.push(userData);
@@ -117,12 +117,12 @@ function createRandomUser(){
 	//app.Wait(1, true);
 	//web.LoadUrl( records[i].avatar );
 	
-	txt.SetText( "ID: " + records[i].id + "\r\nGuid: " + records[i]._guid + "\r\nSocial Security Number: " + records[i].ssn + "\r\nMobile: " + records[i].mobile + "\r\nFull Name: " + records[i].firstName + " " + records[i].lastName1 + " " + records[i].lastName2 + "\r\nBirthday: " + records[i].birthday+ "\r\nAge: " +records[i].age + "\r\nSex: " +records[i].sex + "\r\nSalary: " +formatCurrency(records[i].salary)+ "\r\nEmail: " +records[i].email+ "\r\nJob Description: " +records[i].jobDescription+ "\r\nAddress:\r\n " +records[i].address + "\r\nFavorite Music/Genre: "  + records[i].genre+ "\r\nMarital Status: "  + records[i].maritalStatus + "\r\nReligion: " + records[i].religion + "\r\nStudies: " + records[i].studies + "\r\nHobbies: " + records[i].hobbies+ "\r\nSons: " + JSON.stringify(records[i].sons) + "\r\nMales Total Salary:" + moneyMale.toFixed(2)+ "\r\nFemales Total Salary:" + moneyFemale.toFixed(2));
+	txt.SetText( "ID: " + records[i].id + "\r\nGuid: " + records[i]._guid + "\r\nSocial Security Number: " + records[i].ssn + "\r\nMobile: " + records[i].mobile + "\r\nFull Name: " + records[i].firstName + " " + records[i].lastName1 + " " + records[i].lastName2 + "\r\nBirthdate: " + records[i].birthday+ "\r\nAge: " +records[i].age + "\r\nSex: " +records[i].sex + "\r\nSalary: " +formatCurrency(records[i].salary)+ "\r\nEmail: " +records[i].email+ "\r\nJob Description: " +records[i].jobDescription+ "\r\nAddress:\r\n " +records[i].address + "\r\nFavorite Music/Genre: "  + records[i].genre+ "\r\nMarital Status: "  + records[i].maritalStatus + "\r\nReligion: " + records[i].religion + "\r\nStudies: " + records[i].studies + "\r\nHobbies: " + records[i].hobbies+ "\r\nSons: " + JSON.stringify(records[i].sons) + "\r\nMales Total Salary:" + moneyMale.toFixed(2)+ "\r\nFemales Total Salary:" + moneyFemale.toFixed(2));
 //	web.LoadHtml( txt.GetText() );
 //if(utils.LocalStorageLeftSize()>1000){
 //app.ShowPopup(utils.LocalStorageLeftSize());
-	db.ExecuteSql( "INSERT INTO Sims(guid, email, ssn, firstName, lastName1, lastName2, sex, age, birthdate, addressStreet, addressCity, addressState, addressZipCode, religion, ocupation, salary, maritalStatus, genre,mobile)" +   
-        " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [records[i]._guid, records[i].email, records[i].ssn,records[i].firstName, records[i].lastName1, records[i].lastName2, records[i].sex, records[i].age, records[i].birthday, records[i].addressStreet, records[i].addressCity, records[i].addressState, records[i].addressZipCode, records[i].religion, records[i].jobDescription, records[i].salary, records[i].maritalStatus, records[i].genre,records[i].mobile], ()=>{app.ShowPopup( "Success" )},(error)=>{alert(error);})  
+	db.ExecuteSql( "INSERT INTO People(guid, email, ssn, firstName, lastName1, lastName2, sex, age, birthdate, addressStreet, addressCity, addressState, addressZipCode, religion, occupation, salary, maritalStatus, genre,mobile,hobbies,studies)" +   
+        " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [records[i]._guid, records[i].email, records[i].ssn,records[i].firstName, records[i].lastName1, records[i].lastName2, records[i].sex, records[i].age, records[i].birthday, records[i].addressStreet, records[i].addressCity, records[i].addressState, records[i].addressZipCode, records[i].religion, records[i].jobDescription, records[i].salary, records[i].maritalStatus, records[i].genre,records[i].mobile, records[i].hobbies, records[i].studies], ()=>{app.ShowPopup( "Success" )},(error)=>{alert(error);})  
 
 	//app.ShowPopup(records[i].id + "\r\n" + records[i]._guid + "\r\n" + records[i].firstName + " " + records[i].lastName1 + "\r\n" + records[i].birthday + "\r\n" +records[i].age + "\r\n", "Long,Top");
 //alert(JSON.stringify(user));

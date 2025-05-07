@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Sims (
+CREATE TABLE IF NOT EXISTS People (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     guid TEXT UNIQUE NOT NULL,
     ssn TEXT,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Sims (
     birthdate DATETIME,
     religion TEXT,
     salary REAL,
-    ocupation TEXT,
+    occupation TEXT,
     maritalStatus TEXT,
     addressStreet TEXT,
     addressCity TEXT,
@@ -18,5 +18,7 @@ CREATE TABLE IF NOT EXISTS Sims (
     addressZipCode TEXT,
     genre TEXT,
     mobile TEXT,
-    email TEXT
+    email TEXT,
+    hobbies TEXT,
+    studies TEXT
 );
