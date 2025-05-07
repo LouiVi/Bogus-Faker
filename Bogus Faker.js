@@ -12,12 +12,13 @@ async function OnStart()
 {
 utils=app.CreateUtils()
 chart = app.LoadChartJS()
-    db = app.OpenDatabase(/* app.GetDatabaseFolder()+*/ "/storage/emulated/0/Download/BogusFaker.sqlite" )  
+    db = app.OpenDatabase(/* app.GetDatabaseFolder()+*/ "/storage/emulated/0/Download/sqlite/BogusFaker.sqlite" );
 //sql = "DROP TABLE People;"
 //db.ExecuteSql(sql);
 
-sql = "CREATE TABLE People ( id INTEGER PRIMARY KEY AUTOINCREMENT, guid TEXT UNIQUE NOT NULL, ssn TEXT, firstName TEXT, lastName1 TEXT, lastName2 TEX, sex TEXT, age TEXT, birthdate DATETIME, religion TEXT, salary TEXT, ocupation TEXT, maritalStatus TEXT, addressStreet TEXT, addressCity TEXT, addressState TEXT, addressZipCode TEXT, genre TEXT, mobile TEXT, email TEXT);";
-
+sql = app.ReadFile( "sql.txt" );//"CREATE TABLE People ( id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, guid TEXT UNIQUE NOT NULL, ssn TEXT NULL, firstName TEXT NULL, lastName1 TEXT NULL, lastName2 TEXT NULL, sex TEXT NULL, age TEXT null, birthdate DATETIME null, religion TEXT null, salary TEXT null, ocupation TEXT null, maritalStatus TEXT null, addressStreet TEXT null, addressCity TEXT null, addressState TEXT null, addressZipCode TEXT null, genre TEXT null, mobile TEXT null, email TEXT null);";
+//t  = prompt("",sql);
+//app.Exit();
 db.ExecuteSql(sql);
 const { faker } = await import('https://esm.sh/@faker-js/faker');
 const occupations = ["Comedian", "Neourologist", "Urologist", "Beautitian", "Budtender", "Fireman", "Stripper", "Model", "Painter", "Teacher", "Carpenter", "Baker", "Manager", "Carrier", "Fast food worker", "Supervisor", "Data Entry", "Call Center worker", "Driver", "Waitress", "Director", "Astronaut", "Militar", "Bodybuilder", "Secretary", "Lawyer", "Judge", "Senior Care","Watcher","Veterinary", 
@@ -97,7 +98,7 @@ function createRandomUser(){
 	//Add layout to app.	
 	app.AddLayout( lay )
 	//app.Wait(10, false);
-	for(i=0;i<1562;i++){
+	for(i=0;i<15000;i++){
 	const userData = createRandomUser();
 	//app.WriteFile( "/storage/emulated/0/JSON/user_"+(i+1)+".json", JSON.stringify(userData) )
 	records.push(userData);
@@ -120,13 +121,13 @@ function createRandomUser(){
 //	web.LoadHtml( txt.GetText() );
 //if(utils.LocalStorageLeftSize()>1000){
 //app.ShowPopup(utils.LocalStorageLeftSize());
-	db.ExecuteSql( "INSERT INTO People(guid, email, ssn, firstName, lastName1, lastName2, sex, age, birthdate, addressStreet, addressCity, addressState, addressZipCode, religion, ocupation, salary, maritalStatus, genre)" +   
-        " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [records[i]._guid, records[i].email, records[i].ssn,records[i].firstName, records[i].lastName1, records[i].lastName2, records[i].sex, records[i].age, records[i].birthdate, records[i].addressStreet, records[i].addressCity, records[i].addressState, records[i].addressZipCode, records[i].religion, records[i].ocupation, records[i].salary, records[i].maritalStatus, records[i].genre], ()=>{app.ShowPopup( "Success" )},(error)=>{alert(error);})  
+	db.ExecuteSql( "INSERT INTO Sims(guid, email, ssn, firstName, lastName1, lastName2, sex, age, birthdate, addressStreet, addressCity, addressState, addressZipCode, religion, ocupation, salary, maritalStatus, genre,mobile)" +   
+        " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [records[i]._guid, records[i].email, records[i].ssn,records[i].firstName, records[i].lastName1, records[i].lastName2, records[i].sex, records[i].age, records[i].birthday, records[i].addressStreet, records[i].addressCity, records[i].addressState, records[i].addressZipCode, records[i].religion, records[i].jobDescription, records[i].salary, records[i].maritalStatus, records[i].genre,records[i].mobile], ()=>{app.ShowPopup( "Success" )},(error)=>{alert(error);})  
 
 	//app.ShowPopup(records[i].id + "\r\n" + records[i]._guid + "\r\n" + records[i].firstName + " " + records[i].lastName1 + "\r\n" + records[i].birthday + "\r\n" +records[i].age + "\r\n", "Long,Top");
 //alert(JSON.stringify(user));
-currentRecord = JSON.stringify(userData);
-localStorage.setItem(`user_${i + 1}`, currentRecord);
+//currentRecord = JSON.stringify(userData);
+//localStorage.setItem(`user_${i + 1}`, currentRecord);
 //app.WriteFile( "/storage/emulated/0/JSON/user_"+(i+1)+".json", currentRecord)
   //  app.Wait(3.45, false);
     }
@@ -134,7 +135,7 @@ localStorage.setItem(`user_${i + 1}`, currentRecord);
 //alert("Space Left: " +utils.LocalStorageLeftSize());
 //alert("Space Max: " +utils.LocalStorageMaxSize());
     // Optionally, save all records in a single entry
-    sessionStorage.setItem('allUsers', JSON.stringify(records));
+    //sessionStorage.setItem('allUsers', JSON.stringify(records));
     data = {
             labels: ['male','female'],
         	datasets: [

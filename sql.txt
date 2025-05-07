@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS Sims (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    guid TEXT UNIQUE NOT NULL,
+    ssn TEXT,
+    firstName TEXT,
+    lastName1 TEXT,
+    lastName2 TEXT,
+    sex TEXT,
+    age INTEGER,
+    birthdate DATETIME,
+    religion TEXT,
+    salary REAL,
+    ocupation TEXT,
+    maritalStatus TEXT,
+    addressStreet TEXT,
+    addressCity TEXT,
+    addressState TEXT,
+    addressZipCode TEXT,
+    genre TEXT,
+    mobile TEXT,
+    email TEXT
+);
